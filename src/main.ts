@@ -26,13 +26,13 @@ const main = async ({ path, threads, minDelay, maxDelay, ttl }: MainProps) => {
     maxDelay,
   });
 
-  player.play();
-
   if (ttl > 0) {
     setTimeout(() => {
       process.exit();
     }, ttl * 1000);
   }
+
+  await player.play();
 
   return {
     status: "ok",
