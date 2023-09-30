@@ -1,0 +1,13 @@
+{
+  "name": "noiser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.7.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "getopts": "^2.3.0"
+  }
+}
