@@ -5,5 +5,5 @@ export const waitRandomDelayFactory =
   async () =>
     new Promise<void>((resolve) => {
       const randomDelay = randomInteger(min, max);
-      setTimeout(() => resolve(), randomDelay);
+      setTimeout(() => resolve(), randomDelay * 1000);
     });
