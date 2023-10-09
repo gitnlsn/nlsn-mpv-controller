@@ -1,5 +1,5 @@
+import { spawn } from "child_process";
 import { TaskConsumer } from "../interfaces/TaskConsumer";
-import { playAudio } from "./playfile";
 import { randomInteger } from "./randomInteger";
 
 export const playLoop = (
@@ -7,18 +7,26 @@ export const playLoop = (
   beforeAudioCallback?: () => Promise<void>
 ): TaskConsumer => {
   const abortController = new AbortController();
+  let aborted = false;
 
   const consumerPromise = new Promise<void>(async (resolve) => {
     abortController.signal.onabort = () => {
+      aborted = true;
       resolve();
     };
 
-    // ISSUE: abort controller wont kill while loop
     while (true) {
+      if (aborted) {
+        return;
+      }
+
       const audioFilePaths = await getAudioFilePaths();
       const randomIndex = randomInteger(0, audioFilePaths.length - 1);
+
       await beforeAudioCallback?.();
-      await playAudio(audioFilePaths[randomIndex]);
+      await spawn(`mpv ${audioFilePaths[randomIndex]}`, {
+        signal: abortController.signal,
+      });
     }
   });
 

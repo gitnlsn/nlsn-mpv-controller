@@ -1,6 +1,6 @@
 import getopts from "getopts";
-import { listFiles } from "./utils/listFiles";
-import { RichAudioPlayer } from "./AudioPlayers/RichAudioPlayer";
+import { listFiles } from "../utils/listFiles";
+import { RichAudioPlayer } from "../AudioPlayers/RichAudioPlayer";
 
 interface MainProps {
   path: string;

@@ -1,8 +1,11 @@
 {
-  "name": "noiser",
+  "name": "nlsn-mpv-controller",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "rm dist -rf && npx tsc"
+  },
   "devDependencies": {
     "@types/node": "^20.7.2",
     "typescript": "^5.2.2"
